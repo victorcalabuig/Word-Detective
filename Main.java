@@ -12,12 +12,20 @@ public class Main {
 		System.out.println("Welcome to Word-Detective 2.0");
 		
 		//Ask the user to choose a file and create a Scanner object to read that file.
-		System.out.print("Enter the file name you want to read:\n>> ");
-		Scanner keyboard = new Scanner(System.in);
-		String fileName = keyboard.nextLine();
-		Scanner textReader = new Scanner(new File(fileName));
+		System.out.print("Enter the file name you want to read (or press ENTER if you want to write your own text right now):\n>> ");
+		Scanner textReader = new Scanner(System.in);
+		String userInput = textReader.nextLine();
 		
+		//if userInput is NOT empty, the user specified a file so make the Scanner object read that file.
+		if(!userInput.equals("")) {
+			textReader = new Scanner(new File(userInput));
+		}
+		//if the user didn't specify a file, give instructions on how to enter text:
+		else {
+			System.out.println("Enter your text and when you are done, press Enter, then CTRL+Z (^Z) and then ENTER again:\n");
+		}
 		
+				
 		//Create new empty linked list of words called wordList to store the word read in the file.
 		LListWordNodes wordList = new LListWordNodes();
 		
@@ -41,6 +49,8 @@ public class Main {
 			
 			lineNumber += 1;									
 		}
+		
+		//Print out results:
 		System.out.println("\nWORD\tREPS\t\tLINES");
 		System.out.println("_____________________________________________");
 		System.out.print(wordList.toString());
