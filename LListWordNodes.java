@@ -51,6 +51,70 @@ public class LListWordNodes {
 	
 	
 	
+	public void InsertWordAlphOrder(String w, int line) {
+		
+		//1.Check if the word exists already or if this appearance is the first one.
+		WordNode reference = first;
+		boolean wordExists = false;
+		while ( reference != null ) {
+			if ( reference.word.equals(w) ) {
+				wordExists = true;
+				break;
+			}else {
+				reference = reference.next;
+			}	
+		}
+		
+		//2. If the word already EXISTS, simply insert a new IntNode with line number to the corresponding WordNode's LListIntNodes.
+		if (wordExists) {
+			reference.appearences.InsertIntNode(line);
+		}
+		
+		//3. If the word does NOT exist in the linked list:
+		else {
+			WordNode n = new WordNode(w);		//1)Create new WordNode
+			reference = first;
+			if (reference == null) {			//2)If it is the first word of the list, insert it and insert the corresponding IntNode
+				first = n;
+				last = n;
+				size += 1;
+				n.appearences.InsertIntNode(line);
+			}else {
+				while( reference != null && reference.word.compareTo(w) > 0) {
+					reference = reference.next;
+				}
+			}
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//Method to convert the word linked list's attributes into string:
