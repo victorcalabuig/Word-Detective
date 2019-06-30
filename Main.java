@@ -42,10 +42,7 @@ public class Main {
 			lineNumber += 1;									
 		}
 		
-		//test
-		System.out.println("Word list size = " + wordList.size);
-		System.out.println("First word  = " + wordList.first.word + " and appears " + wordList.first.appearences.size + " in the lines " + wordList.first.appearences.first.number + " and " + wordList.first.appearences.first.next.number);
-		System.out.println("second word  = " + wordList.first.next.word);
+		
 
 
 	}
