@@ -60,7 +60,7 @@ public class LListWordNodes {
 		
 		//for every WordNode of the linked list of words:
 		for( int i = 0; i < size; i += 1) {
-			result += reference.word + "(" + reference.appearences.size + ")\t:\t";
+			result += reference.word + "\t(" + reference.appearences.size + ")\t:\t";
 			
 			//for every IntNode of the word's IntNode linked list:
 			IntNode ref = reference.appearences.first;

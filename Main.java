@@ -18,7 +18,7 @@ public class Main {
 		Scanner textReader = new Scanner(new File(fileName));
 		
 		
-		//Create new empty linked list of words called wordList:
+		//Create new empty linked list of words called wordList to store the word read in the file.
 		LListWordNodes wordList = new LListWordNodes();
 		
 		
@@ -41,7 +41,8 @@ public class Main {
 			
 			lineNumber += 1;									
 		}
-		
+		System.out.println("\nWORD\tREPS\t\tLINES");
+		System.out.println("_____________________________________________");
 		System.out.print(wordList.toString());
 
 
