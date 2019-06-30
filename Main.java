@@ -18,10 +18,35 @@ public class Main {
 		Scanner textReader = new Scanner(new File(fileName));
 		
 		
-		//Print the text of the file that the user chose
+		//Create new empty linked list of words called wordList:
+		LListWordNodes wordList = new LListWordNodes();
+		
+		
+		//Delimiters to separate the words of each line:
+		String delimiters = "[\\p{Space}\\p{Punct}\\p{Digit}]";
+		
+		//create a variable to keep track of the line number the scanner is reading:
+		int lineNumber = 1;
+		
+		
+		//For every line of the text:
 		while(textReader.hasNextLine()) {
-			System.out.println(textReader.nextLine());
+			String line = textReader.nextLine();
+			String[] wordArray = line.split(delimiters);		//Transform the line into an array of words, where each position stores a word of the line.
+			
+			//for every word of the line:
+			for (int i = 0; i < wordArray.length; i +=1 ) {
+				wordList.InsertWord(wordArray[i], lineNumber);	//Use the method InsertWord to add either a new WordNode (if the word appears for the first time) or a repetition to an existing WordNode.
+			}
+			
+			lineNumber += 1;									
 		}
+		
+		//test
+		System.out.println("Word list size = " + wordList.size);
+		System.out.println("First word  = " + wordList.first.word + " and appears " + wordList.first.appearences.size + " in the lines " + wordList.first.appearences.first.number + " and " + wordList.first.appearences.first.next.number);
+		System.out.println("second word  = " + wordList.first.next.word);
+
 
 	}
 
