@@ -42,7 +42,7 @@ public class Main {
 			lineNumber += 1;									
 		}
 		
-		
+		System.out.print(wordList.toString());
 
 
 	}
