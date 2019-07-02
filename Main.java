@@ -41,7 +41,7 @@ public class Main {
 		
 		
 		//Delimiters to separate the words of each line:
-		String delimiters = "[\\p{Space}\\p{Punct}\\p{Digit}]";
+		String delimiters = "[\\p{Space}\\p{Punct}\\p{Digit}1¡¿+]";
 		
 		//create a variable to keep track of the line number the scanner is reading:
 		int lineNumber = 1;
@@ -53,16 +53,19 @@ public class Main {
 			String[] wordArray = line.split(delimiters);		//Transform the line into an array of words, where each position stores a word of the line.
 			
 			//for every word of the line:
-			if(alphabetical) {
-				for (int i = 0; i < wordArray.length; i +=1 ) {
-					wordList.InsertWordAlphOrder(wordArray[i], lineNumber);	
+			for (int i = 0; i < wordArray.length; i++) {
+				String word = wordArray[i].trim();
+				
+				if (word.length() > 0){
+					if (alphabetical) {
+						wordList.InsertWordAlphOrder(word, lineNumber);
+					}else {
+						wordList.InsertWord(word, lineNumber);
+					}
+						
 				}
-			}else {
-				for (int i = 0; i < wordArray.length; i +=1 ) {
-					wordList.InsertWord(wordArray[i], lineNumber);	//Use the method InsertWord to add either a new WordNode (if the word appears for the first time) or a repetition to an existing WordNode.
-				}
-			
 			}
+			
 			
 			lineNumber += 1;									
 		}
@@ -71,7 +74,7 @@ public class Main {
 		System.out.println("\nWORD\tREPS\t\tLINES");
 		System.out.println("_____________________________________________");
 		System.out.print(wordList.toString());
-
+		textReader.close();
 
 	}
 
