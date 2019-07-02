@@ -72,17 +72,36 @@ public class LListWordNodes {
 		
 		//3. If the word does NOT exist in the linked list:
 		else {
-			WordNode n = new WordNode(w);		//1)Create new WordNode
+			WordNode newNode = new WordNode(w);		//1)Create new WordNode
 			reference = first;
-			if (reference == null) {			//2)If it is the first word of the list, insert it and insert the corresponding IntNode
-				first = n;
-				last = n;
+			if (reference == null) {				//2)If it is the first word of the list, insert it and insert the corresponding IntNode
+				first = newNode;
+				last = newNode;
 				size += 1;
-				n.appearences.InsertIntNode(line);
+				newNode.appearences.InsertIntNode(line);
 			}else {
-				while( reference != null && reference.word.compareTo(w) > 0) {
-					reference = reference.next;
+				if(first.word.compareTo(w) > 0) {
+					newNode.next = first;
+					first = newNode;
+					newNode.appearences.InsertIntNode(line);
+				}else {
+					WordNode refAhead = first.next;		//This variable will always point to the WordNode that is ahead of the WordNode pointed to by the variable reference.
+					while( refAhead != null && refAhead.word.toLowerCase().compareTo(w.toLowerCase()) < 0) {
+						refAhead = refAhead.next;
+						reference = reference.next;
+					}
+					newNode.next = reference.next;
+					reference.next = newNode;
+					newNode.appearences.InsertIntNode(line);
+
 				}
+				
+				
+				
+				
+				
+				size += 1;
+				
 			}
 			
 		}

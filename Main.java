@@ -16,6 +16,16 @@ public class Main {
 		Scanner textReader = new Scanner(System.in);
 		String userInput = textReader.nextLine();
 		
+		
+		//Ask the user if he wants the results to be ordered alphabetically
+		boolean alphabetical = false;
+		System.out.println("Would you like to show the results alphabetically ordered? (type y/n)");
+		String alphUser = textReader.nextLine();
+		if( alphUser.equals("y") || alphUser.equals("yes")) {
+			alphabetical = true;
+		}
+		
+		
 		//if userInput is NOT empty, the user specified a file so make the Scanner object read that file.
 		if(!userInput.equals("")) {
 			textReader = new Scanner(new File(userInput));
@@ -43,8 +53,15 @@ public class Main {
 			String[] wordArray = line.split(delimiters);		//Transform the line into an array of words, where each position stores a word of the line.
 			
 			//for every word of the line:
-			for (int i = 0; i < wordArray.length; i +=1 ) {
-				wordList.InsertWord(wordArray[i], lineNumber);	//Use the method InsertWord to add either a new WordNode (if the word appears for the first time) or a repetition to an existing WordNode.
+			if(alphabetical) {
+				for (int i = 0; i < wordArray.length; i +=1 ) {
+					wordList.InsertWordAlphOrder(wordArray[i], lineNumber);	
+				}
+			}else {
+				for (int i = 0; i < wordArray.length; i +=1 ) {
+					wordList.InsertWord(wordArray[i], lineNumber);	//Use the method InsertWord to add either a new WordNode (if the word appears for the first time) or a repetition to an existing WordNode.
+				}
+			
 			}
 			
 			lineNumber += 1;									
